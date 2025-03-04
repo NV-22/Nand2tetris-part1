@@ -1,0 +1,20 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/1/Mux.hdl
+/** 
+ * Multiplexor:
+ * if (sel = 0) out = a, else out = b
+ */
+CHIP DMux {
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+    // NOT gate to invert sel
+    Not(in=sel, out=notSel);
+
+    // AND gates to route 'in' to either 'a' or 'b'
+    And(a=in, b=notSel, out=a);
+    And(a=in, b=sel, out=b);
+}
